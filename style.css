@@ -1,0 +1,23 @@
+* {
+  background-color: rgb(44, 1, 1);
+  font-family: 'Press Start 2P', cursive;
+}
+
+h1 {
+  color: red;
+
+  animation: color-change 1.5s infinite;
+}
+
+@keyframes color-change {
+  0% {
+    color: red;
+  }
+  50% {
+    color: black;
+  }
+}
+
+.new__game {
+  background-color: red;
+}
