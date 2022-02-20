@@ -18,6 +18,50 @@ h1 {
   }
 }
 
-.new__game {
+button {
   background-color: red;
+  padding: 20px 20px;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+.game {
+  display: flex;
+  justify-content: center;
+}
+
+.game__btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  padding: 0 20px;
+}
+
+.btn {
+  width: 50%;
+  margin: 5px 0;
+}
+
+.game__board {
+  background-color: rgb(68, 48, 48);
+  width: 30%;
+}
+.message {
+  background-color: rgb(68, 48, 48);
+  font-size: 18px;
+  text-align: center;
+}
+
+.scoreboard {
+  background-color: rgb(68, 48, 48);
+  font-size: 14px;
+  padding: 0 5px;
 }

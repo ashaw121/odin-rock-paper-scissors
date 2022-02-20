@@ -12,62 +12,62 @@ class Game {
     return moves[randIntComputerMove];
   }
 
-  userPlay() {
-    return prompt('rock, paper, or scissors?').toLowerCase();
-  }
-
-  playRound() {
-    const userPlay = this.userPlay();
+  playRound(userPlay) {
     const computerPlay = this.computerPlay();
-    console.log(
-      `The user played ${userPlay}, the computer played ${computerPlay}`
-    );
+    let winner;
+    scoreBoard.innerHTML = `The user played ${userPlay}, the computer played ${computerPlay}`;
     if (userPlay === computerPlay) return 'draw';
-    if (userPlay === 'rock' && computerPlay === 'paper') return 'computer';
-    if (userPlay === 'rock' && computerPlay === 'scissors') return 'user';
-    if (userPlay === 'paper' && computerPlay === 'scissors') return 'computer';
-    if (userPlay === 'paper' && computerPlay === 'rock') return 'user';
-    if (userPlay === 'scissors' && computerPlay === 'rock') return 'computer';
-    if (userPlay === 'scissors' && computerPlay === 'paper') return 'user';
+    if (userPlay === 'rock' && computerPlay === 'paper') winner = 'computer';
+    if (userPlay === 'rock' && computerPlay === 'scissors') winner = 'user';
+    if (userPlay === 'paper' && computerPlay === 'scissors')
+      winner = 'computer';
+    if (userPlay === 'paper' && computerPlay === 'rock') winner = 'user';
+    if (userPlay === 'scissors' && computerPlay === 'rock') winner = 'computer';
+    if (userPlay === 'scissors' && computerPlay === 'paper') winner = 'user';
+
+    this.updateWinner(winner);
   }
 
   reportScore() {
-    console.log(
-      `The user has ${this.userScore} points and the computer has ${this.computerScore} points!`
-    );
+    scoreBoard.innerHTML += `The user has ${this.userScore} points and the computer has ${this.computerScore} points!`;
   }
 
-  newGame() {
-    this.userScore = 0;
-    this.computerScore = 0;
-
-    let numRounds = 5;
-    for (let i = 0; i < numRounds; i++) {
-      let winner = this.playRound();
-      if (winner === 'draw') {
-        console.log('This is a draw!');
-        numRounds++;
-      }
-      if (winner === 'computer') {
-        this.computerScore++;
-        console.log('The computer won this round!');
-      }
-      if (winner === 'user') {
-        this.userScore++;
-        console.log('The user won this round!');
-      }
-      this.reportScore();
+  updateWinner(winner) {
+    if (winner === 'draw') {
+      scoreBoard.innerHTML = 'This is a draw!';
     }
-    if (this.userScore > this.computerScore)
-      console.log('The user wins the match!');
-    if (this.computerScore > this.userScore)
-      console.log('The computer wins the match!');
+    if (winner === 'computer') {
+      this.computerScore++;
+      scoreBoard.innerHTML = 'The computer won this round!';
+    }
+    if (winner === 'user') {
+      this.userScore++;
+      scoreBoard.innerHTML = 'The user won this round!';
+    }
+    this.reportScore();
+
+    // if (this.userScore > this.computerScore)
+    //   console.log('The user wins the match!');
+    // if (this.computerScore > this.userScore)
+    //   console.log('The computer wins the match!');
   }
 }
 
 let game = new Game();
 
 const btnNewGame = document.querySelector('.new__game');
-btnNewGame.addEventListener('click', function () {
-  game.newGame();
+const btnRock = document.querySelector('.btn__rock');
+const btnPaper = document.querySelector('.btn__paper');
+const btnScissors = document.querySelector('.btn__scissors');
+const scoreBoard = document.querySelector('.scoreboard');
+
+btnNewGame.addEventListener('click', function () {});
+btnRock.addEventListener('click', function () {
+  game.playRound('rock');
+});
+btnPaper.addEventListener('click', function () {
+  game.playRound('paper');
+});
+btnScissors.addEventListener('click', function () {
+  game.playRound('scissors');
 });
